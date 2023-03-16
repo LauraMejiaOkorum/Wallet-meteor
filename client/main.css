@@ -1,6 +1,5 @@
-*{
-    margin-left: 10px;
-    margin-right: 10px;
+.fonndo{
+    background-color: #b9ffff;
 }
 
 .buton{
@@ -10,4 +9,5 @@
 
 .listC{
     text-align: center;
+    margin-top: 15px;
 }

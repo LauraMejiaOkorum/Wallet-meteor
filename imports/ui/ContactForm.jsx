@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { ContactsCollection } from '../api/ContactsCollection';
+import SendIcon from '@mui/icons-material/Send';
 
 
 
@@ -23,6 +24,7 @@ export const ContactForm = () => {
     }
     return (
         <div>
+            <h1 className='listC'>Add a new contact</h1>
                 <form>
                     <div>
                         <TextField
@@ -31,6 +33,7 @@ export const ContactForm = () => {
                             margin='dense'
                             value={name}
                             fullWidth
+                            size='small'
                             onChange={e => setName(e.target.value)}
                         />
                     </div>
@@ -42,6 +45,7 @@ export const ContactForm = () => {
                             margin='dense'
                             fullWidth
                             value={email}
+                            size='small'
                             onChange={e => setEmail(e.target.value)}
                         />
                     </div>
@@ -52,11 +56,12 @@ export const ContactForm = () => {
                             margin='dense'
                             value={imageUrl}
                             fullWidth
+                            size='small'
                             onChange={e => setImageUrl(e.target.value)}
                         />
                     </div>
                     <div className='buton'>
-                        <Button type='button' variant="contained" onClick={saveContact}>
+                        <Button type='button' variant="contained" onClick={saveContact} endIcon={<SendIcon />}>
                             Save Contact
                         </Button>
                     </div>

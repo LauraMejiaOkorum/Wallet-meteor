@@ -2,21 +2,20 @@ import React from 'react';
 import { ContactForm } from './ContactForm';
 import { ContcatList } from './ContactList';
 import Grid from '@mui/material/Grid';
+import ButtonAppBar from './ButtonAppBar';
+
 
 
 export const App = () => (
   <div>
-      <Grid container spacing={10} >
-        <Grid item xs={6}>
-          <h1 className='listC'>Wallet Meteor</h1>
+    <ButtonAppBar></ButtonAppBar>
+      <Grid container spacing={2} className="fondo" justifyContent="center">
+        <Grid item xs={5} justifyContent="center">
           <ContactForm></ContactForm>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5} justifyContent="center">
           <ContcatList></ContcatList>
         </Grid>
         </Grid>
-    
-    
-    
   </div>
 );
