@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContactsCollection } from '../api/ContactsCollection';
-import { useTracker } from 'meteor/react-meteor-data';
+import { useSubscribe, useFind } from 'meteor/react-meteor-data';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -12,17 +12,29 @@ import IconButton from '@mui/material/IconButton';
 import UpdateIcon from '@mui/icons-material/Update';
 import ArchiveIcon from '@mui/icons-material/Archive';
 
-export const ContcatList = () => {
-    const contact = useTracker(() => {
-        return ContactsCollection.find({}).fetch()
-    })
 
+export const ContcatList = () => {
+    const isloading = useSubscribe("Contacts");
+
+    const contact = useFind(() => ContactsCollection.find({archived:{$ne: true}}, {sort: {createdat: -1}}))
+
+    const deleteContact = (_id) => {
+        Meteor.call("deleteContact", {_id})
+    }
+
+    const archiveContact = (_id) => {
+        Meteor.call("ArchiveContact", {_id})
+    }
+
+    if(isloading()){
+        return <p>Loading data</p>
+    }
     return (
         <div>
             <h1 className='listC'>Contact List </h1>
             {
                 contact.map(contact =>
-                    <List sx={{ width: '100%', maxWidth: 460, bgcolor: 'background.paper' }}>
+                    <List key={contact._id} sx={{ width: '100%', maxWidth: 460, bgcolor: 'background.paper' }}>
                         <ListItem alignItems="flex-start" >
                             <ListItemAvatar>
                                 <Avatar alt="Remy Sharp" src={contact.imageUrl} />
@@ -46,10 +58,10 @@ export const ContcatList = () => {
                             <IconButton edge="end" aria-label="delete">
                                 <UpdateIcon color='primary'/>
                             </IconButton>
-                            <IconButton edge="end" aria-label="delete">
+                            <IconButton edge="end" aria-label="delete" onClick={() => archiveContact(contact._id)}>
                             <ArchiveIcon color='primary'/>
                             </IconButton>
-                            <IconButton edge="end" aria-label="delete">
+                            <IconButton edge="end" aria-label="delete" onClick={() => deleteContact(contact._id)}>
                             <DeleteIcon color='primary'/>
                             </IconButton>
                         </ListItem>
@@ -58,5 +70,4 @@ export const ContcatList = () => {
             }
         </div>
     )
-
 }
