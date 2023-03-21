@@ -5,11 +5,13 @@ import Stack from '@mui/material/Stack';
 
 export default function ErrorAlert({message}) {
     return (
+        <div>
         <Stack sx={{ width: '100%' }} spacing={2}>
             <Alert severity="error" >
                 <AlertTitle>Error</AlertTitle>
                 {message}
             </Alert>
         </Stack>
+        </div>
     );
 }

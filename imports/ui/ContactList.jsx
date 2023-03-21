@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContactsCollection } from '../api/ContactsCollection';
+import { ContactsCollection } from '../api/collections/ContactsCollection';
 import { useSubscribe, useFind } from 'meteor/react-meteor-data';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -15,7 +15,6 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 
 export const ContcatList = () => {
     const isloading = useSubscribe("Contacts");
-
     const contact = useFind(() => ContactsCollection.find({archived:{$ne: true}}, {sort: {createdat: -1}}))
 
     const deleteContact = (_id) => {
@@ -27,7 +26,11 @@ export const ContcatList = () => {
     }
 
     if(isloading()){
-        return <p>Loading data</p>
+        return (
+        <div>
+            <h1 className='listC'>Contact List </h1>
+            <h6 className='load'>Loading data...</h6>
+        </div>)
     }
     return (
         <div>
@@ -49,7 +52,7 @@ export const ContcatList = () => {
                                             variant="body2"
                                             color="text.primary"
                                         >
-                                        wallet id
+                                        <strong>wallet id: </strong>{contact.wallet}
                                         </Typography>
                                         {contact.email}
                                     </React.Fragment>

@@ -8,7 +8,8 @@ import Button from '@mui/material/Button';
 
 export default function ButtonAppBar() {
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <div>
+        <Box sx={{ flexGrow: 1 }} className="borde"> 
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
@@ -18,5 +19,6 @@ export default function ButtonAppBar() {
                 </Toolbar>
             </AppBar>
         </Box>
+        </div>
     );
 }

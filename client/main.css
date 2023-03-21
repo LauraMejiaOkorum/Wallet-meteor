@@ -1,5 +1,5 @@
-.fonndo{
-    background-color: #b9ffff;
+.fondo{
+    background-color: white;
 }
 
 .buton{
@@ -11,3 +11,12 @@
     text-align: center;
     margin-top: 15px;
 }
+
+.borde{
+    margin-bottom: 20px;
+}
+
+.load{
+    text-align: center;
+}
+

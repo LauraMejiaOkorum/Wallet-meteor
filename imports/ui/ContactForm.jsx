@@ -3,8 +3,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import {Meteor} from "meteor/meteor"
-import ErrorAlert from './ErrorAlert';
-import SuccessAlert from './SuccessAlert';
+import ErrorAlert from './components/ErrorAlert';
+import SuccessAlert from './components/SuccessAlert';
 
 
 
@@ -16,11 +16,12 @@ export const ContactForm = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const [wallet, setWallet] = useState("");
 
     
     const saveContact = () => {
         //ContactsCollection.insert({name,email,imageUrl})
-        Meteor.call("insertContact", {name, email, imageUrl}, (errorResponse) => {
+        Meteor.call("insertContact", {name, email, wallet, imageUrl}, (errorResponse) => {
             if (errorResponse){
                 setError(errorResponse.error);
                 setTimeout(() => {
@@ -29,6 +30,7 @@ export const ContactForm = () => {
             }else{
                 setName("");
                 setEmail("");
+                setWallet("");
                 setImageUrl("");
                 setSuccess("contact saved successfully")
                 setTimeout(() => {
@@ -68,6 +70,18 @@ export const ContactForm = () => {
                             value={email}
                             size='small'
                             onChange={e => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <TextField
+                            id="wallet"
+                            label="Wallet id"
+                            type= "number"
+                            margin='dense'
+                            fullWidth
+                            value={wallet}
+                            size='small'
+                            onChange={e => setWallet(e.target.value)}
                         />
                     </div>
                     <div>

@@ -10,6 +10,7 @@ export default function SuccessAlert({message}) {
     const [open, setOpen] = React.useState(true);
 
     return (
+        <div>
         <Box sx={{ width: '100%' }}>
             <Collapse in={open}>
                 <Alert>
@@ -18,4 +19,5 @@ export default function SuccessAlert({message}) {
                 </Alert>
             </Collapse>
         </Box>
+        </div>
     )}
